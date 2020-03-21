@@ -1,0 +1,20 @@
+{
+    "devDependencies": {
+        "webpack": "^4.42.0",
+        "webpack-cli": "^3.3.11"
+    },
+    "dependencies": {
+        "vue": "^2.6.11",
+        "vue-loader": "^15.9.1",
+        "vue-router": "^3.1.6",
+        "vue-template-compiler": "^2.6.11",
+        "vuetify": "^2.2.18",
+        "webpack-merge": "^4.2.2"
+    },
+    "scripts": {
+        "watch_dev": "webpack -w --config ./build/webpack.config.dev.js",
+        "build_dev": "webpack --config ./build/webpack.config.dev.js",
+        "watch_prod": "webpack -w --config ./build/webpack.config.prod.js",
+        "build_prod": "webpack --config ./build/webpack.config.prod.js"
+    }
+}
