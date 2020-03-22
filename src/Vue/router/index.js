@@ -4,7 +4,6 @@ import login from '@/login.vue'
 import home from '@/home.vue'
 import signup from '@/signup.vue'
 import forgot from '@/forgot-password.vue'
-import play from '@/play.vue'
 
 Vue.use(Router)
 
@@ -17,7 +16,6 @@ export default new Router({
     },
     {
       path: '/home',
-      name: 'home',
       component: home
     },
     {
@@ -34,11 +32,6 @@ export default new Router({
       path: '/forgot-password',
       name: 'forgot',
       component: forgot
-    },
-    {
-      path: '/play',
-      name: 'play',
-      component: play
     },
   ]
 })
