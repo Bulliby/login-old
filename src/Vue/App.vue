@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div id="app">
         <headerMenu/>
         <router-view/>
     </div> 
@@ -16,4 +16,8 @@ export default {
 }
 </script>
 
-<style scope></style>
+<style scope>
+#app {
+    height: 100%;
+}
+</style>
