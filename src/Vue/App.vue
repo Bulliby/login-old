@@ -1,14 +1,18 @@
 <template>
     <div>
-        <router-link to="/login">Log in</router-link>
+        <headerMenu/>
         <router-view/>
     </div> 
 </template>
 
 <script>
+import headerMenu from '@/menu.vue'
 
 export default {
     name: 'App',
+    components: {
+        headerMenu
+    },
 }
 </script>
 
