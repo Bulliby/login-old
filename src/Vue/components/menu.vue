@@ -38,4 +38,7 @@ export default {
 </script>
 
 <style scope>
+.el-menu {
+    height: 60px;
+}
 </style>

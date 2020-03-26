@@ -1,16 +1,16 @@
 <template>
     <!--div class="grid-container" ref="gridContainerJs" v-on:menu-create-get-size="`height: calc(100% - ${this.contentSize}px);`"!-->
     <div class="grid-container" v-on:menu-created-get-size="test()">
-        <h2 class="title">
+        <h1 class="title">
             Belotte en Ligne
-        </h2>
+        </h1>
         <div class="border-container">
             <el-form>
                 <el-form-item label="Login :">
-                    <el-input placeholder="Your email" v-model="password" name="password" show-password></el-input>
+                    <el-input placeholder="Your password" v-model="login" name="login"></el-input>
                 </el-form-item>
                 <el-form-item label="Password :">
-                    <el-input placeholder="Your password" v-model="login" name="login"></el-input>
+                    <el-input placeholder="Your email" v-model="password" name="password" show-password></el-input>
                 </el-form-item>
                 <el-button>Se connecter</el-button>
             </el-form>
@@ -39,7 +39,7 @@ export default {
 
 <style scoped>
 
-@import url('https://fonts.googleapis.com/css?family==Baloo+2&display=swap"');
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans+TC');
 
 div.border-container {
     grid-column-start: 2;
@@ -62,14 +62,16 @@ div.grid-container {
     display: grid;
     grid-template-columns: 35% auto 35%;
     grid-template-rows: 30% auto 30%;
+    height: calc(100% - 61px);
 }
 
-div.grid-container h2.title {
-    font-family: 'Baloo2', sans-serif;
+div.grid-container h1.title {
+    font-family: 'Noto Sans TC', sans-serif;
     grid-column-start: 2;
     grid-row-start: 1;
     justify-self: center;
     align-self: end;
+    text-shadow: 1px 1px 2px grey;
 }
 
 </style>
