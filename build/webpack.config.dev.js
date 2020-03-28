@@ -6,7 +6,7 @@ module.exports = {
     entry: './src/Vue/app.js',
     mode: 'development',
     output: {
-        path: path.resolve(__dirname, '../dist/dev')
+        path: path.resolve(__dirname, '../../laravel/auth-belotte/public/')
     },
     module: {
         rules: [
