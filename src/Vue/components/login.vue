@@ -1,11 +1,11 @@
 <template>
     <div class="container">
-        <!--div class="alert">
+        <div class="alert">
             <el-alert v-if="alert === error" title="Vous etes authenitfie" type="success" center>
             </el-alert>
             <el-alert v-if="alert === success" title="Email ou mot de pass incorect" type="error" center>
             </el-alert>
-        </div-->
+        </div>
         <div class="grid-container" v-on:menu-created-get-size="test()">
             <h1 class="title">
                 Belotte en Ligne
@@ -54,12 +54,21 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
 
 @import url('https://fonts.googleapis.com/css?family=Noto+Sans+TC');
 
 div.container {
-    height: 100%;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+div.grid-container {
+    display: grid;
+    grid-template-columns: 35% auto 35%;
+    grid-template-rows: 30% auto 30%;
+    flex: 1;
 }
 
 div.border-container {
@@ -77,13 +86,6 @@ div.border-container {
     grid-row-start: 2;
     justify-self: center;
     align-self: center;
-}
-
-div.grid-container {
-    display: grid;
-    grid-template-columns: 35% auto 35%;
-    grid-template-rows: 30% auto 30%;
-    height: calc(100% - 61px);
 }
 
 div.grid-container h1.title {

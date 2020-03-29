@@ -16,8 +16,10 @@ export default {
 }
 </script>
 
-<style scope>
+<style>
 #app {
     height: 100%;
+    display: flex;
+    flex-direction: column;
 }
 </style>
