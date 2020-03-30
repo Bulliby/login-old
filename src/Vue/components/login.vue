@@ -1,9 +1,9 @@
 <template>
     <div class="container">
         <div class="alert">
-            <el-alert v-if="alert === error" title="Vous etes authenitfie" type="success" center>
+            <el-alert v-if="$getConst('Alert', 'SUCCESS') === alert" title="Vous etes authenitfie" type="success" center>
             </el-alert>
-            <el-alert v-if="alert === success" title="Email ou mot de pass incorect" type="error" center>
+            <el-alert v-if="$getConst('Alert', 'ERROR') === alert" title="Email ou mot de pass incorect" type="error" center>
             </el-alert>
         </div>
         <div class="grid-container" v-on:menu-created-get-size="test()">
@@ -18,7 +18,9 @@
                     <el-form-item label="Password :">
                         <el-input placeholder="Your password" v-model="password" name="password" show-password></el-input>
                     </el-form-item>
-                    <el-button @click="connect">Se connecter</el-button>
+                    <el-form-item>
+                        <el-button @click="connect">Se connecter</el-button>
+                    </el-form-item>
                 </el-form>
             </div>
         </div>
@@ -36,19 +38,30 @@ export default {
             password: '',
             contentSize: 0,
             ApiRequester: null,
+            alert: 2
         }
     },
     methods: {
-        connect() {
-            this.ApiRequester.initCsrf();
-            this.ApiRequester.login({
-                'email' : this.email,
-                'password' : this.password,
+        connect: function () {
+            this.ApiRequester.initCsrf().then(() => {
+                this.ApiRequester.login({
+                    'email' : this.email,
+                    'password' : this.password,
+                }).catch((error) => {
+                    if (error.response.status == 403) {
+                        this.alert = this.$getConst('Alert', 'ERROR')
+                    } else {
+                        abort("Something bad happened");
+                    }
+                }).then((response) => {
+                    if (response.status == 200) {
+                        this.alert = this.$getConst('Alert', 'SUCCESS')
+                    }
+                });
             });
         }
     },
     created: function () {
-        this.$getConst('Alert', 'NOTHING');
         this.ApiRequester = new ApiRequester('http://auth-belotte');
     }
 }
@@ -77,8 +90,8 @@ div.border-container {
     justify-self: stretch;
     box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
     display: grid;
-    grid-template-columns: 10% auto 10%;
-    grid-template-rows: 10% auto 10%;
+    grid-template-columns: 5% auto 5%;
+    grid-template-rows: 5% auto 5%;
 }
 
 .el-form {
