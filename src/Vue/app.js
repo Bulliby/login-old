@@ -2,6 +2,7 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import Consts from './consts'
+import 'element-ui/lib/theme-chalk/index.css'
 
 import { Input, Row, Col, Form, FormItem, Button, Alert} from 'element-ui';
 

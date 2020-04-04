@@ -1,6 +1,10 @@
 <template>
     <div class="container">
-        <alert :alert="alert"/>
+        <alert :alert="alert">
+            <template v-slot:error>
+                Mauvais login ou mot de passe
+            </template>
+        </alert>
         <div class="grid-container">
             <h1 class="title">
                 Belote en Ligne

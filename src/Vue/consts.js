@@ -1,10 +1,11 @@
 const ConstsLoader = {};
 
 const Alert = {
-    ERROR: 0,
-    SUCCESS: 1,
-    INFO: 2,
-    NOTHING: 3
+    INFO: 0,
+    ERROR: 1,
+    SUCCESS: 2,
+    WARNING: 3,
+    NOTHING: 4
 }
 
 const Links = {
