@@ -1,7 +1,6 @@
 <template>
     <div class="menu-container">
         <a @click="setIndex($getConst('Links', 'LOGIN'))" :class="{ active : index === $getConst('Links', 'LOGIN')}"><router-link to="/login">Log in</router-link></a>
-        <a @click="setIndex($getConst('Links', 'HOME'))" :class="{ active : index === $getConst('Links', 'HOME')}"><router-link to="/home">Home</router-link></a>
         <a @click="setIndex($getConst('Links', 'SIGNUP'))" :class="{ active : index === $getConst('Links', 'SIGNUP')}"><router-link to="/signup">Signup</router-link></a>
         <a @click="setIndex($getConst('Links', 'FORGOT_PASSWORD'))" :class="{ active : index === $getConst('Links', 'FORGOT_PASSWORD')}"><router-link to="/forgot-password">Forgot-password</router-link></a>
         <a @click="setIndex($getConst('Links', 'PLAY'))" :class="{ active : index === $getConst('Links', 'PLAY')}"><router-link to="/play">Play</router-link></a>

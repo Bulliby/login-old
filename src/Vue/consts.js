@@ -3,15 +3,15 @@ const ConstsLoader = {};
 const Alert = {
     ERROR: 0,
     SUCCESS: 1,
-    NOTHING: 2
+    INFO: 2,
+    NOTHING: 3
 }
 
 const Links = {
     LOGIN: 0,
-    HOME: 1,
-    SIGNUP: 2,
-    FORGOT_PASSWORD: 3,
-    PLAY: 4
+    SIGNUP: 1,
+    FORGOT_PASSWORD: 2,
+    PLAY: 3
 }
 
 const Consts = { Alert : Alert, Links: Links };

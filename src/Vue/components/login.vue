@@ -1,14 +1,9 @@
 <template>
     <div class="container">
-        <div class="alert">
-            <el-alert v-if="$getConst('Alert', 'SUCCESS') === alert" title="Vous etes authenitfie" type="success" center>
-            </el-alert>
-            <el-alert v-if="$getConst('Alert', 'ERROR') === alert" title="Email ou mot de pass incorect" type="error" center>
-            </el-alert>
-        </div>
-        <div class="grid-container" v-on:menu-created-get-size="test()">
+        <alert :alert="alert"/>
+        <div class="grid-container">
             <h1 class="title">
-                Belotte en Ligne
+                Belote en Ligne
             </h1>
             <div class="border-container">
                 <el-form>
@@ -30,12 +25,14 @@
 
 <script>
 import ApiRequester from '../api/ApiRequester'
-import credits from './credits.vue'
+import credits from '@/credits.vue'
+import alert from 'G/alert.vue'
 
 export default {
     name: 'login',
     components: {
         credits,
+        alert
     },
     data() {
         return {
@@ -43,7 +40,7 @@ export default {
             password: '',
             contentSize: 0,
             ApiRequester: null,
-            alert: 2
+            alert: this.$getConst('Alert', 'NOTHING')
         }
     },
     methods: {

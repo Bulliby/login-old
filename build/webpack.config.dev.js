@@ -47,6 +47,7 @@ module.exports = {
     resolve: {
         alias: {
             '@': path.resolve('src/Vue/components'),
+            'G': path.resolve('src/Vue/generic-components'),
         }
     },
     plugins: [

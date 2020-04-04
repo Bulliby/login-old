@@ -1,12 +1,22 @@
 <template>
-    <h1>Sign up</h1>
 </template>
 
 <script>
 
 export default {
     name: 'signup',
+    data() {
+        return {
+            alert: 3
+        }
+    },
+    methods: {
+    },
+    created: function () {
+    }
 }
 </script>
 
-<style scope></style>
+<style scoped>
+
+</style>
