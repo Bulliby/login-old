@@ -24,14 +24,19 @@
                 </el-form>
             </div>
         </div>
+        <credits/>
     </div>
 </template>
 
 <script>
-import ApiRequester from '../api/ApiRequester';
+import ApiRequester from '../api/ApiRequester'
+import credits from './credits.vue'
 
 export default {
     name: 'login',
+    components: {
+        credits,
+    },
     data() {
         return {
             email: '',
