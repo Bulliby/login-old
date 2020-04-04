@@ -1,42 +1,58 @@
 <template>
-    <el-menu 
-        :default-active="activeIndex" 
-        class="el-menu-demo" 
-        mode="horizontal" 
-        background-color="#FFFFFF"
-        ref="menu"
-        @select="handleSelect">
-        <el-menu-item index="1"><router-link to="/login">Log in</router-link></el-menu-item>
-        <el-menu-item index="2"><router-link to="/home">Home</router-link></el-menu-item>
-        <el-menu-item index="3"><router-link to="/signup">Signup</router-link></el-menu-item>
-        <el-menu-item index="4"><router-link to="/forgot-password">Forgot-password</router-link></el-menu-item>
-    </el-menu>
+    <div class="menu-container">
+        <a @click="setIndex($getConst('Links', 'LOGIN'))" :class="{ active : index === $getConst('Links', 'LOGIN')}"><router-link to="/login">Log in</router-link></a>
+        <a @click="setIndex($getConst('Links', 'HOME'))" :class="{ active : index === $getConst('Links', 'HOME')}"><router-link to="/home">Home</router-link></a>
+        <a @click="setIndex($getConst('Links', 'SIGNUP'))" :class="{ active : index === $getConst('Links', 'SIGNUP')}"><router-link to="/signup">Signup</router-link></a>
+        <a @click="setIndex($getConst('Links', 'FORGOT_PASSWORD'))" :class="{ active : index === $getConst('Links', 'FORGOT_PASSWORD')}"><router-link to="/forgot-password">Forgot-password</router-link></a>
+        <a @click="setIndex($getConst('Links', 'PLAY'))" :class="{ active : index === $getConst('Links', 'PLAY')}"><router-link to="/play">Play</router-link></a>
+    </div>
 </template>
 
 <script>
 
 export default {
-    name: 'headerMenu',
+    name: 'xmenu',
     data() {
         return {
-            activeIndex: '1',
-            activeIndex2: '1'
+            index: 0,
         };
     },
     methods: {
-        handleSelect(key, keyPath) {
-        },
-        gridContainerSize() {
-            return this.$refs.menu.clientHeight;
-        },
+        setIndex(index) {
+            this.index = index
+        }
+    },
+    computed: {
+        isActive() {
+            return true;
+        }
     },
     mounted: function() {
-        this.$emit('menu-created-get-size', this.gridContainerSize());
     }
 }
 </script>
 
 <style>
-.el-menu {
+
+@import url('https://fonts.googleapis.com/css?family=IM+Fell+French+Canon+SC');
+
+.menu-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    height: 60px;
+    border-bottom: solid 1px;
+}
+
+a {
+    font-family: 'IM Fell French Canon SC', sans-serif;
+    flex-basis: 15%;
+    align-self: center;
+    text-decoration: none;
+    color: black;
+}
+
+a.active {
+    text-decoration: underline;
 }
 </style>

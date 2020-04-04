@@ -6,7 +6,15 @@ const Alert = {
     NOTHING: 2
 }
 
-const Consts = { Alert : Alert };
+const Links = {
+    LOGIN: 0,
+    HOME: 1,
+    SIGNUP: 2,
+    FORGOT_PASSWORD: 3,
+    PLAY: 4
+}
+
+const Consts = { Alert : Alert, Links: Links };
 
 ConstsLoader.install = function (Vue) {
     Vue.prototype.$getConst = (constObject, key) => {
