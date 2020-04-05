@@ -77,5 +77,4 @@ div.grid-container h1.title {
     align-self: end;
     text-shadow: 1px 1px 2px grey;
 }
-
 </style>

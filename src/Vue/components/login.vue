@@ -1,24 +1,24 @@
 <template>
 	<pageContainer>
-	<template v-slot:alert>
-		<alert :alert="alert"/>
-	</template>
-	<template v-slot:title>
-		Belote en Ligne
-	</template>
-	<template v-slot:form>
-		<el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="120px">
-			<el-form-item label="Login :" prop="email">
-				<el-input placeholder="Your email"  v-model="ruleForm.email" name="login"></el-input>
-			</el-form-item>
-			<el-form-item label="Password :" prop="password">
-				<el-input placeholder="Your password" v-model="ruleForm.password" name="password" show-password></el-input>
-			</el-form-item>
-			<el-form-item>
-				<el-button @click="connect">Se connecter</el-button>
-			</el-form-item>
-		</el-form>
-	</template>
+        <template v-slot:alert>
+            <alert :alert="alert"/>
+        </template>
+        <template v-slot:title>
+            Belote en Ligne
+        </template>
+        <template v-slot:form>
+            <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="120px">
+                <el-form-item label="Login :" prop="email">
+                    <el-input placeholder="Your email"  v-model="ruleForm.email" name="login"></el-input>
+                </el-form-item>
+                <el-form-item label="Password :" prop="password">
+                    <el-input placeholder="Your password" v-model="ruleForm.password" name="password" show-password></el-input>
+                </el-form-item>
+                <el-form-item>
+                    <el-button @click="connect">Se connecter</el-button>
+                </el-form-item>
+            </el-form>
+        </template>
 	</pageContainer>
 </template>
 
