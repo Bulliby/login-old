@@ -34,3 +34,8 @@ export default {
 }
 </script>
 
+<style>
+p.el-alert__description {
+    font-size: 17px !important;
+}
+</style>

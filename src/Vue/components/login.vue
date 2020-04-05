@@ -1,125 +1,95 @@
 <template>
-    <div class="container">
-        <alert :alert="alert">
-        </alert>
-        <div class="grid-container">
-            <h1 class="title">
-                Belote en Ligne
-            </h1>
-            <div class="border-container">
-                <el-form>
-                    <el-form-item label="Login :">
-                        <el-input placeholder="Your email" v-model="email" name="login"></el-input>
-                    </el-form-item>
-                    <el-form-item label="Password :">
-                        <el-input placeholder="Your password" v-model="password" name="password" show-password></el-input>
-                    </el-form-item>
-                    <el-form-item>
-                        <el-button @click="connect">Se connecter</el-button>
-                    </el-form-item>
-                </el-form>
-            </div>
-        </div>
-        <credits/>
-    </div>
+	<pageContainer>
+	<template v-slot:alert>
+		<alert :alert="alert"/>
+	</template>
+	<template v-slot:title>
+		Belote en Ligne
+	</template>
+	<template v-slot:form>
+		<el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="120px">
+			<el-form-item label="Login :" prop="email">
+				<el-input placeholder="Your email"  v-model="ruleForm.email" name="login"></el-input>
+			</el-form-item>
+			<el-form-item label="Password :" prop="password">
+				<el-input placeholder="Your password" v-model="ruleForm.password" name="password" show-password></el-input>
+			</el-form-item>
+			<el-form-item>
+				<el-button @click="connect">Se connecter</el-button>
+			</el-form-item>
+		</el-form>
+	</template>
+	</pageContainer>
 </template>
 
 <script>
+import pageContainer from 'G/page-container.vue'
 import ApiRequester from '../api/ApiRequester'
-import credits from '@/credits.vue'
 import alert from 'G/alert.vue'
 
 export default {
-    name: 'login',
-    components: {
-        credits,
-        alert
-    },
-    data() {
-        return {
-            email: '',
-            password: '',
-            contentSize: 0,
-            ApiRequester: null,
-            alert: {
-                type: this.$getConst('Alert', 'NOTHING'),
-                msg: ""
-            }
-        }
-    },
-    methods: {
-        connect: function () {
-            this.ApiRequester.initCsrf().then(() => {
-                this.ApiRequester.login({
-                    'email' : this.email,
-                    'password' : this.password,
-                }).then((response) => {
-                    if (response.status == 200) {
-                        this.alert = {
-                            type: this.$getConst('Alert', 'SUCCESS'),
-                            msg: "Vous etes auhtentifie"
-                        }
-                    }
-                }).catch((error) => {
-                    if (error.response.status == 403) {
-                        this.alert = {
-                            type: this.$getConst('Alert', 'ERROR'),
-                            msg: "Mauvais mot de passe ou login"
-                        }
-                    } else {
-                        abort("Something bad happened");
-                    }
-                });
-            });
-        }
-    },
-    created: function () {
-        this.ApiRequester = new ApiRequester('http://auth-belotte');
-    }
+	name: 'login',
+	components: {
+		pageContainer,
+		alert
+	},
+	data() {
+		return {
+			email: '',
+			password: '',
+			contentSize: 0,
+			ApiRequester: null,
+			alert: {
+				type: this.$getConst('Alert', 'NOTHING'),
+				msg: ""
+			},
+			ruleForm: {
+				email: '',
+				passord: ''
+			},
+			rules: {
+				email: [
+					{ required: true, message: 'Please enter an email', trigger: 'validate' },
+					{ type: 'email', message: 'Please enter a valid email', trigger: 'validate' }
+				],
+				password: [
+					{ required: true, message: 'Please enter a password', trigger: 'validate' },
+				]
+			}
+		}
+	},
+	methods: {
+		connect: function () {
+			this.$refs['ruleForm'].validate().then(() => {
+				this.ApiRequester.initCsrf().then(() => {
+						this.ApiRequester.login({
+							'email' : this.email,
+							'password' : this.password,
+						}).then((response) => {
+							if (response.status == 200) {
+								this.alert = {
+									type: this.$getConst('Alert', 'SUCCESS'),
+									msg: "Vous etes auhtentifie"
+								}
+							}
+						}).catch((error) => {
+							if (error.response.status == 403) {
+								this.alert = {
+									type: this.$getConst('Alert', 'ERROR'),
+									msg: "Mauvais mot de passe ou login"
+								}
+							} else {
+								abort("Something bad happened");
+							}
+						});
+					});
+				}).catch(() => {
+					return false;
+				});
+			}
+		},
+	mounted: function () {
+		this.ApiRequester = new ApiRequester('http://auth-belotte');
+	}
 }
 </script>
-
-<style>
-
-@import url('https://fonts.googleapis.com/css?family=Noto+Sans+TC');
-
-div.container {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-}
-
-div.grid-container {
-    display: grid;
-    grid-template-columns: 35% auto 35%;
-    grid-template-rows: 30% auto 30%;
-    flex: 1;
-}
-
-div.border-container {
-    grid-column-start: 2;
-    grid-row-start: 2;
-    justify-self: stretch;
-    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
-    display: grid;
-    grid-template-columns: 5% auto 5%;
-    grid-template-rows: 5% auto 5%;
-}
-
-.el-form {
-    grid-column-start: 2;
-    grid-row-start: 2;
-    justify-self: center;
-    align-self: center;
-}
-
-div.grid-container h1.title {
-    font-family: 'Noto Sans TC', sans-serif;
-    grid-column-start: 2;
-    grid-row-start: 1;
-    justify-self: center;
-    align-self: end;
-    text-shadow: 1px 1px 2px grey;
-}
-
-</style>
