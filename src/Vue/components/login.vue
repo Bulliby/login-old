@@ -1,9 +1,6 @@
 <template>
     <div class="container">
         <alert :alert="alert">
-            <template v-slot:error>
-                Mauvais login ou mot de passe
-            </template>
         </alert>
         <div class="grid-container">
             <h1 class="title">
@@ -44,7 +41,10 @@ export default {
             password: '',
             contentSize: 0,
             ApiRequester: null,
-            alert: this.$getConst('Alert', 'NOTHING')
+            alert: {
+                type: this.$getConst('Alert', 'NOTHING'),
+                msg: ""
+            }
         }
     },
     methods: {
@@ -53,15 +53,21 @@ export default {
                 this.ApiRequester.login({
                     'email' : this.email,
                     'password' : this.password,
-                }).catch((error) => {
-                    if (error.response.status == 403) {
-                        this.alert = this.$getConst('Alert', 'ERROR')
-                    } else {
-                        abort("Something bad happened");
-                    }
                 }).then((response) => {
                     if (response.status == 200) {
-                        this.alert = this.$getConst('Alert', 'SUCCESS')
+                        this.alert = {
+                            type: this.$getConst('Alert', 'SUCCESS'),
+                            msg: "Vous etes auhtentifie"
+                        }
+                    }
+                }).catch((error) => {
+                    if (error.response.status == 403) {
+                        this.alert = {
+                            type: this.$getConst('Alert', 'ERROR'),
+                            msg: "Mauvais mot de passe ou login"
+                        }
+                    } else {
+                        abort("Something bad happened");
                     }
                 });
             });
