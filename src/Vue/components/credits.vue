@@ -1,6 +1,6 @@
 <template>
-    <div class="flex-container">
-        <span>© Credits to Agnes</span>
+    <div class="credits-container">
+        <div class="credits">© Credits to Agnes</div>
     </div>
 </template>
 
@@ -23,15 +23,16 @@ export default {
 
 @import url('https://fonts.googleapis.com/css?family=Gotu');
 
-div.flex-container {
+div.credits-container {
+    height: 100%;
     display: flex;
+    align-self: flex-end;
     flex-direction: row;
-    justify-content: flex-end;
 }
 
-span {
-    align-self: center;
+div.credits {
     font-family: 'Gotu', sans-serif;
+    align-self: flex-end;
 }
 
 </style>

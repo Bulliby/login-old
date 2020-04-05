@@ -7,7 +7,7 @@
             Belote en Ligne
         </template>
         <template v-slot:form>
-            <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="120px">
+            <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-position="top" size="large">
                 <el-form-item label="Login :" prop="email">
                     <el-input placeholder="Your email"  v-model="ruleForm.email" name="login"></el-input>
                 </el-form-item>
@@ -93,3 +93,6 @@ export default {
 	}
 }
 </script>
+<style scoped>
+
+</style>

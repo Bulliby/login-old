@@ -39,7 +39,7 @@ export default {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    height: 60px;
+    min-height: 60px;
     border-bottom: solid 1px;
 }
 

@@ -7,18 +7,12 @@
             Belote en Ligne (Inscription)
         </template>
         <template v-slot:form>
-            <el-form>
+            <el-form label-position="top" size="large">
                 <el-form-item label="Login :">
                     <el-input placeholder="Votre login" name="login"></el-input>
                 </el-form-item>
                 <el-form-item label="Email :">
                     <el-input placeholder="Votre email" name="email"></el-input>
-                </el-form-item>
-                <el-form-item label="Nom :">
-                    <el-input placeholder="Votre nom" name="name"></el-input>
-                </el-form-item>
-                <el-form-item label="Prenom :">
-                    <el-input placeholder="Votre prenom" name="firstname"></el-input>
                 </el-form-item>
                 <el-form-item label="Password :">
                     <el-input placeholder="Votre mot de passe" name="password"></el-input>
