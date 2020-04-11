@@ -8,12 +8,12 @@
     </template>
     <template v-slot:form>
         <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-position="top" size="large">
-            <el-form-item label="Login :" prop="login">
+            <!--el-form-item label="Login :" prop="login">
                 <el-input placeholder="Votre login" v-model="ruleForm.login" name="login"></el-input>
             </el-form-item>
             <el-form-item label="Email :" prop="email">
                 <el-input placeholder="Votre email" v-model="ruleForm.email" name="email"></el-input>
-            </el-form-item>
+            </el-form-item!-->
             <el-form-item label="Password :" prop="password">
                 <el-input placeholder="Votre mot de passe" v-model="ruleForm.password" name="password" show-password></el-input>
             </el-form-item>
@@ -58,12 +58,14 @@ export default {
                     { type: 'email', message: 'Please enter a valid email', trigger: 'validate' },
                 ],
                 password: [
-                    { required: true, message: 'Please enter a password', trigger: 'validate' },
+                    { pattern: '(?=(?:.*[^A-Za-z0-9]){2,})(?=(?:.*[A-Z])+)(?=(?:.*[0-9])+).*$', message: 'Need two speacial chars one digit and an upercase letter', trigger: 'validate' },
                     { min: 8, message: 'Password must be at least 8 characters', trigger: 'validate' },
+                    { required: true, message: 'Please enter a password', trigger: 'validate' },
                 ],
                 passwordValidate: [
-                    { required: true, message: 'Please valid your password', trigger: 'validate' },
+                    { pattern: '(?=(?:.*[^A-Za-z0-9]){2,})(?=(?:.*[A-Z])+)(?=(?:.*[0-9])+).*$', message: 'Need two speacial chars one digit and an upercase letter', trigger: 'validate' },
                     { min: 8, message: 'Password must be at least 8 characters', trigger: 'validate' },
+                    { required: true, message: 'Please valid your password', trigger: 'validate' },
                 ],
             }
         }
