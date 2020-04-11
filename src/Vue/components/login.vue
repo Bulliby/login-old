@@ -60,33 +60,27 @@ export default {
     },
     methods: {
         connect: function () {
-            this.$refs['ruleForm'].validate().then(() => {
-                this.ApiRequester.initCsrf().then(() => {
-                    this.ApiRequester.login({
-                        'email' : this.email,
-                        'password' : this.password,
-                    }).then((response) => {
-                        if (response.status == 200) {
-                            this.alert = {
-                                type: this.$getConst('Alert', 'SUCCESS'),
-                                msg: "Vous etes auhtentifie"
-                            }
-                        }
-                    }).catch((error) => {
-                        if (error.response.status == 403) {
-                            this.alert = {
-                                type: this.$getConst('Alert', 'ERROR'),
-                                msg: "Mauvais mot de passe ou login"
-                            }
-                        } else {
-                            abort("Something bad happened");
-                        }
-                    });
-                });
-            }).catch(() => {
-                return false;
+            this.$refs['ruleForm'].validate()
+            .then(() => this.ApiRequester.initCsrf())
+            .then(() => this.ApiRequester.login({ 'email' : this.email, 'password' : this.password, }))
+            .then((response) => {
+                if (response.status == 200) {
+                    this.alert = {
+                        type: this.$getConst('Alert', 'SUCCESS'),
+                        msg: "Vous etes auhtentifie"
+                    }
+                }
+            }).catch((error) => {
+                if (error.response.status == 403) {
+                    this.alert = {
+                        type: this.$getConst('Alert', 'ERROR'),
+                        msg: "Mauvais mot de passe ou login"
+                    }
+                } else {
+                    abort("Something bad happened");
+                }
             });
-        }
+        },
     },
     mounted: function () {
         this.ApiRequester = new ApiRequester('http://auth-belotte');
