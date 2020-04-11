@@ -11,13 +11,13 @@
                 <slot name="form"></slot>
             </div>
         </div>
-        <credits/>
+        <credits>© Credits to Agnes</credits>
     </div>
 </template>
 
 <script>
 import ApiRequester from '../api/ApiRequester'
-import credits from '@/credits.vue'
+import credits from 'G/credits.vue'
 
 export default {
     name: 'page-container',

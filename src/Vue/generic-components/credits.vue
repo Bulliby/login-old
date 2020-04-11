@@ -1,6 +1,6 @@
 <template>
     <div class="credits-container">
-        <div class="credits">© Credits to Agnes</div>
+        <div class="credits"><slot>© Credits to you</slot></div>
     </div>
 </template>
 
