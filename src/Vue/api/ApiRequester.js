@@ -6,7 +6,7 @@
 //   By: bulliby <wellsguillaume+at+gmail.com>           /   ____/_  _  __    //
 //                                                      /    \  _\ \/ \/ /    //
 //   Created: 2019/03/10 19:10:46 by bulliby            \     \_\ \     /     //
-//   Updated: 2020/03/26 22:04:14 by bulliby             \________/\/\_/      //
+//   Updated: 2020/04/13 17:19:18 by bulliby             \________/\/\_/      //
 //                                                                            //
 // ************************************************************************** //
 
@@ -28,6 +28,18 @@ export default class ApiRequester {
 
     initCsrf() {
         return this.axios.get(`${this.baseUrl}/sanctum/csrf-cookie`);
+    }
+
+    register(params){
+        return this.axios.post(`${this.baseUrl}/register`, params);
+    }
+
+    checkLogin(params){
+        return this.axios.post(`${this.baseUrl}/register/login`, params);
+    }
+
+    checkEmail(params){
+        return this.axios.post(`${this.baseUrl}/register/email`, params);
     }
 }
 

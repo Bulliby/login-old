@@ -73,6 +73,4 @@ div.title-container {
     display: flex;
     flex-direction: column;
 }
-
-
 </style>

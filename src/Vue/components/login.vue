@@ -35,8 +35,6 @@ export default {
     },
     data() {
         return {
-            email: '',
-            password: '',
             contentSize: 0,
             ApiRequester: null,
             alert: {
@@ -62,7 +60,7 @@ export default {
         connect: function () {
             this.$refs['ruleForm'].validate()
             .then(() => this.ApiRequester.initCsrf())
-            .then(() => this.ApiRequester.login({ 'email' : this.email, 'password' : this.password, }))
+            .then(() => this.ApiRequester.login({ 'email' : this.ruleForm.email, 'password' : this.ruleForm.password, }))
             .then((response) => {
                 if (response.status == 200) {
                     this.alert = {
@@ -77,7 +75,7 @@ export default {
                         msg: "Mauvais mot de passe ou login"
                     }
                 } else {
-                    abort("Something bad happened");
+                    throw new Error("Something bad happened");
                 }
             });
         },
