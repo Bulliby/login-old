@@ -1,17 +1,17 @@
 <template>
-    <div class="alert">
-        <el-alert v-if="$getConst('Alert', 'SUCCESS') === alert.type" type="success" center>
+    <div>
+        <v-alert v-if="$getConst('Alert', 'SUCCESS') === alert.type" type="success">
             {{ alert.msg }}
-        </el-alert>
-        <el-alert v-if="$getConst('Alert', 'ERROR') === alert.type" type="error" center>
+        </v-alert>
+        <v-alert v-if="$getConst('Alert', 'ERROR') === alert.type" type="error">
             {{ alert.msg }}
-        </el-alert>
-        <el-alert v-if="$getConst('Alert', 'WARNING') === alert.type" type="warning" center>
+        </v-alert>
+        <v-alert v-if="$getConst('Alert', 'WARNING') === alert.type" type="warning">
             {{ alert.msg }}
-        </el-alert>
-        <el-alert v-if="$getConst('Alert', 'INFO') === alert.type" type="info" center>
+        </v-alert>
+        <v-alert v-if="$getConst('Alert', 'INFO') === alert.type" type="info">
             {{ alert.msg }}
-        </el-alert>
+        </v-alert>
     </div>
 </template>
 
@@ -35,7 +35,4 @@ export default {
 </script>
 
 <style>
-p.el-alert__description {
-    font-size: 17px !important;
-}
 </style>

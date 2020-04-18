@@ -1,8 +1,8 @@
 <template>
-    <div id="app">
-        <xmenu/>
-        <router-view/>
-    </div> 
+        <div id="app">
+            <xmenu/>
+            <router-view/>
+        </div> 
 </template>
 
 <script>

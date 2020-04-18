@@ -1,18 +1,20 @@
 <template>
-    <div class="container">
-		<slot name="alert"></slot>
-        <div class="title-container">
-            <h1 class="title">
-                <slot name="title"></slot>
-            </h1>
-        </div>
-        <div class="border-container">
-            <div class="form-container">
-                <slot name="form"></slot>
+    <v-app>
+        <div class="container">
+            <slot name="alert"></slot>
+            <div class="title-container">
+                <div class="title">
+                    <slot name="title"></slot>
+                </div>
             </div>
+            <div class="border-container">
+                <div class="form-container">
+                    <slot name="form"></slot>
+                </div>
+            </div>
+            <credits>© Credits to Agnes</credits>
         </div>
-        <credits>© Credits to Agnes</credits>
-    </div>
+    </v-app>
 </template>
 
 <script>
@@ -39,7 +41,7 @@ export default {
 
 <style>
 
-@import url('https://fonts.googleapis.com/css?family=Noto+Sans+TC');
+
 
 div.container {
     display: flex;
@@ -47,12 +49,10 @@ div.container {
     height: 100%;
 }
 
-h1.title {
+div.title {
     align-self: center;
-    font-family: 'Noto Sans TC', sans-serif;
-    text-shadow: 1px 1px 2px grey;
     padding-top: 40px;
-    padding-bottom: 20px;
+    padding-bottom: 60px;
 }
 
 div.border-container {
@@ -65,6 +65,7 @@ div.border-container {
 }
 
 div.form-container {
+    width: 90%;
     align-self: center;
     flex: 1;
 }
