@@ -35,4 +35,7 @@ export default {
 </script>
 
 <style>
+.v-alert {
+    text-align: center;
+}
 </style>
