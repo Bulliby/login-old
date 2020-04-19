@@ -21,6 +21,7 @@ export default {
     props: {
         alert: {
             type: Object,
+            required: true,
         }
     },
     data() {
