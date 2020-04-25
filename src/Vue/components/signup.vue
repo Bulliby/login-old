@@ -45,12 +45,14 @@ export default {
     },
     methods: {
         submit: function() {
-            this.ApiRequester.register({
+            this.ApiRequester.initCsrf()
+            .then(() => this.ApiRequester.register({
                 'email' : this.email, 
                 'login' : this.login, 
                 'password' : this.password,
-                'password_confirmation' : this.password_confirmation
-            })
+                'password_confirmation' : this.password_confirmation,
+                'passwordSafety' : this.password
+            }))
             .then((response) => {
                 if (response.status === 200) {
                     this.alert = {
@@ -64,14 +66,34 @@ export default {
             .catch((errors) => {
                 if (errors.response.status === 422) {
                     errors = errors.response.data.errors;
+                    let passwordSafety = false;
                     for (let error of Object.keys(errors)) {
-                        this[error+'Error'] = errors[error][0]
+                        if (error === 'passwordSafety') {
+                            passwordSafety = true; 
+                        } else {
+                            this[error+'Error'] = errors[error][0]
+                        }
                     } 
+                    if (
+                        this.password_confirmationError === '' 
+                        && this.passwordError === ''
+                        && passwordSafety === true) 
+                        {
+                            this.needStrongPassword();
+                            this['passwordError'] = errors['passwordSafety'][0]
+                            this['password_confirmationError'] = errors['passwordSafety'][0]
+                        }
                 } else {
                     throw new Error("Something bad happened");
                 } 
             });
         },
+        needStrongPassword: function() {
+            this.alert = {
+                type: this.$getConst('Alert', 'WARNING'),
+                msg: "You must provide a password with one uppercase character, one digit and two special chars"
+            }
+        }
     },
     created: function () {
         this.alert = {
