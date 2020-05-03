@@ -40,9 +40,6 @@ export default {
 </script>
 
 <style>
-
-
-
 div.container {
     display: flex;
     flex-direction: column;
@@ -73,5 +70,29 @@ div.form-container {
 div.title-container {
     display: flex;
     flex-direction: column;
+}
+
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans+TC');
+
+span.title-slot {
+    font-family: 'Noto Sans TC', sans-serif;
+    text-shadow: 1px 1px 2px grey;
+    font-size: 45px;
+}
+
+.v-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.v-btn {
+    margin: 30px;
+    width: 200px;
+    align-self: center;
+}
+
+.v-text-field {
+    width: 80%;
+    align-self: center;
 }
 </style>
