@@ -22,9 +22,11 @@
 import pageContainer from 'G/page-container.vue'
 import ApiRequester from '../api/ApiRequester'
 import alert from 'G/alert.vue'
+import laravelValidationMixin from 'G/laravel-validation.js'
 
 export default {
     name: 'signup',
+    mixins: [laravelValidationMixin],
     components: {
         pageContainer,
         alert
@@ -63,30 +65,7 @@ export default {
                     throw new Error("Something bad happened");
                 } 
             })
-            .catch((errors) => {
-                if (errors.response.status === 422) {
-                    errors = errors.response.data.errors;
-                    let passwordSafety = false;
-                    for (let error of Object.keys(errors)) {
-                        if (error === 'passwordSafety') {
-                            passwordSafety = true; 
-                        } else {
-                            this[error+'Error'] = errors[error][0]
-                        }
-                    } 
-                    if (
-                        this.password_confirmationError === '' 
-                        && this.passwordError === ''
-                        && passwordSafety === true) 
-                        {
-                            this.needStrongPassword();
-                            this['passwordError'] = errors['passwordSafety'][0]
-                            this['password_confirmationError'] = errors['passwordSafety'][0]
-                        }
-                } else {
-                    throw new Error("Something bad happened");
-                } 
-            });
+            .catch((errors) => this.handleLaravelErros(errors));
         },
         needStrongPassword: function() {
             this.alert = {
@@ -111,4 +90,3 @@ export default {
 
 <style scoped>
 </style>
-
