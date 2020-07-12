@@ -43,6 +43,12 @@ export default {
             passwordError: '',
             password_confirmation: '',
             password_confirmationError: '',
+            specialRules: [
+                {
+                    action: 'needStrongPassword',
+                    rule: 'password_safety',
+                },
+            ]
         }
     },
     methods: {
@@ -53,7 +59,7 @@ export default {
                 'login' : this.login, 
                 'password' : this.password,
                 'password_confirmation' : this.password_confirmation,
-                'passwordSafety' : this.password
+                'password_safety' : this.password,
             }))
             .then((response) => {
                 if (response.status === 200) {
@@ -65,7 +71,7 @@ export default {
                     throw new Error("Something bad happened");
                 } 
             })
-            .catch((errors) => this.handleLaravelErros(errors));
+            .catch((errors) => this.laravelErros(errors, this.specialRules));
         },
         needStrongPassword: function() {
             this.alert = {
