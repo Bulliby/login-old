@@ -1,4 +1,16 @@
-const ConstsLoader = {};
+// ************************************************************************** //
+//                                                                            //
+//                                                                            //
+//   consts.js                                                                //
+//                                                        ________            //
+//   By: bulliby <wellsguillaume+at+gmail.com>           /   ____/_  _  __    //
+//                                                      /    \  _\ \/ \/ /    //
+//   Created: 2020/07/24 16:35:41 by bulliby            \     \_\ \     /     //
+//   Updated: 2020/07/24 17:30:33 by bulliby             \________/\/\_/      //
+//                                                                            //
+// ************************************************************************** //
+
+const ConstsLoader = Object.create(null);
 
 const Alert = {
     INFO: 0,
@@ -15,7 +27,7 @@ const Links = {
     PLAY: 3
 }
 
-const Consts = { Alert : Alert, Links: Links };
+const Consts = { Alert, Links };
 
 ConstsLoader.install = function (Vue) {
     Vue.prototype.$getConst = (constObject, key) => {

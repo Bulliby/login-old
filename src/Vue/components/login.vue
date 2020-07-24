@@ -18,7 +18,6 @@
 
 <script>
 import pageContainer from 'G/page-container.vue'
-import ApiRequester from '../api/ApiRequester'
 import alert from 'G/alert.vue'
 
 export default {
@@ -29,20 +28,22 @@ export default {
     },
     data() {
         return {
-            ApiRequester: null,
             alert: {
                 type: this.$getConst('Alert', 'NOTHING'),
                 msg: ""
             },
+            email: "",
+            password: "",
+            emailError: "",
+            passwordError: "",
         }
     },
     methods: {
         submit: function () {
-            this.ApiRequester.initCsrf()
-            .then(() => this.ApiRequester.login({ 
+            this.$apiRequester.login({ 
                 'email' : this.email, 
                 'password' : this.password 
-            }))
+            })
             .then((response) => {
                 if (response.status == 200) {
                     this.alert = {
@@ -63,9 +64,6 @@ export default {
             });
         },
     },
-    mounted: function () {
-        this.ApiRequester = new ApiRequester('http://auth-belotte');
-    }
 }
 </script>
 <style scoped>

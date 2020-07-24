@@ -38,10 +38,9 @@ export default {
     },
     methods: {
         submit: function() {
-            this.ApiRequester.initCsrf()
-            .then(() => this.ApiRequester.forgotPassword({
+            this.$apiRequester.forgotPassword({
                 'email' : this.email, 
-            }))
+            })
             .then((response) => {
                 if (response.status === 200) {
                     this.alert = {

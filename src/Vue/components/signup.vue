@@ -53,14 +53,13 @@ export default {
     },
     methods: {
         submit: function() {
-            this.ApiRequester.initCsrf()
-            .then(() => this.ApiRequester.register({
+            this.$apiRequester.register({
                 'email' : this.email, 
                 'login' : this.login, 
                 'password' : this.password,
                 'password_confirmation' : this.password_confirmation,
                 'password_safety' : this.password,
-            }))
+            })
             .then((response) => {
                 if (response.status === 200) {
                     this.alert = {

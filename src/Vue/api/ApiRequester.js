@@ -6,20 +6,23 @@
 //   By: bulliby <wellsguillaume+at+gmail.com>           /   ____/_  _  __    //
 //                                                      /    \  _\ \/ \/ /    //
 //   Created: 2019/03/10 19:10:46 by bulliby            \     \_\ \     /     //
-//   Updated: 2020/07/24 15:29:44 by bulliby             \________/\/\_/      //
+//   Updated: 2020/07/24 17:44:25 by bulliby             \________/\/\_/      //
 //                                                                            //
 // ************************************************************************** //
 
 
 import axios from 'axios';
 
-export default class ApiRequester {
+const ApiRequesterLoader = Object.create(null);
+
+class ApiRequester {
 
     constructor(baseUrl){
         this.baseUrl = baseUrl;
         this.axios = axios.create({
             baseURL: this.baseUrl
         });
+        this.initCsrf();
     }
 
     login(params){
@@ -47,3 +50,8 @@ export default class ApiRequester {
     }
 }
 
+ApiRequesterLoader.install = function (Vue, options) {
+    Vue.prototype.$apiRequester = new ApiRequester(options.url);
+}
+
+export default ApiRequesterLoader;
