@@ -71,7 +71,7 @@ export default {
                     throw new Error("Something bad happened");
                 } 
             })
-            .catch((errors) => this.laravelErros(errors, this.specialRules));
+            .catch((errors) => this.laravelErros(errors));
         },
         needStrongPassword: function() {
             this.alert = {

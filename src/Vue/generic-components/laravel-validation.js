@@ -6,7 +6,7 @@
 //   By: bulliby <wellsguillaume+at+gmail.com>           /   ____/_  _  __    //
 //                                                      /    \  _\ \/ \/ /    //
 //   Created: 2020/06/10 23:37:15 by bulliby            \     \_\ \     /     //
-//   Updated: 2020/07/12 18:16:28 by bulliby             \________/\/\_/      //
+//   Updated: 2020/07/24 15:48:07 by bulliby             \________/\/\_/      //
 //                                                                            //
 // ************************************************************************** //
 
@@ -34,16 +34,18 @@ const laravelValidationMixin = {
             } 
         },
         applyRules: function(e_index) {
-            this.specialRules.forEach((sRule) => {
-                if (sRule.rule == e_index) {
-                    if (typeof this[sRule['action']] !== 'function') {
-                        throw new Error(`You must provide a ${sRule['action']} function`);
-                    }
-                    this[sRule['action']]();
+            if (typeof this.specialRules !== 'undefined') {
+                this.specialRules.forEach((sRule) => {
+                    if (sRule.rule == e_index) {
+                        if (typeof this[sRule['action']] !== 'function') {
+                            throw new Error(`You must provide a ${sRule['action']} function`);
+                        }
+                        this[sRule['action']]();
 
-                    return;
-                }
-            });
+                        return;
+                    }
+                });
+            }
         }
     },
 }
