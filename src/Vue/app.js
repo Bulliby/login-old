@@ -9,7 +9,7 @@ import ApiRequester from './api/ApiRequester'
 Vue.use(Vuelidate)
 Vue.use(Consts)
 //TODO load url from ENV ?
-Vue.use(ApiRequester, {url: 'http://auth-belotte'})
+Vue.use(ApiRequester, {url: 'http://auth-belotte2'})
 
 const app = new Vue({
     el: '#app',

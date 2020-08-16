@@ -11,7 +11,7 @@
             <v-text-field v-model="login" label="Login" @input="loginError = ''" required :error-messages="loginError" />
             <v-text-field v-model="email" label="Email" @input="emailError = ''" required :error-messages="emailError" />
             <v-text-field v-model="password" label="Password" @input="passwordError = ''" type="password" required :error-messages="passwordError"/>
-            <v-text-field v-model="password_confirmation" @input="password_confirmationError = ''" label="Password" type="password" required :error-messages="password_confirmationError" />
+            <v-text-field v-model="password_confirmation" v-on:keyup.enter="submit" @input="password_confirmationError = ''" label="Password" type="password" required :error-messages="password_confirmationError" />
             <v-btn @click="submit">Submit</v-btn>
         </v-form>
         </template>
@@ -34,7 +34,10 @@ export default {
     data() {
         return {
             ApiRequester: null,
-            alert: null,
+            alert: {
+                type: this.$getConst('Alert', 'NOTHING'),
+                msg: ""
+            },
             login: '',
             loginError: '',
             email: '',
@@ -61,7 +64,7 @@ export default {
                 'password_safety' : this.password,
             })
             .then((response) => {
-                if (response.status === 200) {
+                if (response.status === 201) {
                     this.alert = {
                         type: this.$getConst('Alert', 'SUCCESS'),
                         msg: "Votre compte a bien ete créé"
@@ -78,17 +81,6 @@ export default {
                 msg: "You must provide a password with one uppercase character, one digit and two special chars"
             }
         }
-    },
-    created: function () {
-        this.alert = {
-            type: this.$getConst('Alert', 'NOTHING'),
-            msg: ""
-        }
-    },
-    mounted: function () {
-        this.ApiRequester = new ApiRequester('http://auth-belotte');
-    },
-    computed: {
     },
 }
 </script>

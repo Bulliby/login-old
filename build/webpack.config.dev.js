@@ -6,7 +6,8 @@ module.exports = {
 	entry: './src/Vue/app.js',
 	mode: 'development',
 	output: {
-		path: path.resolve(__dirname, '../../laravel/auth-belotte/public/')
+        //TODO from env ?
+		path: path.resolve(__dirname, '../../laravel/auth-belotte2/public/')
 	},
 	module: {
 		rules: [

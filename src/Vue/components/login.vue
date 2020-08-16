@@ -9,7 +9,7 @@
         <template v-slot:form>
             <v-form>
                 <v-text-field v-model="email" label="Email" @input="emailError = ''" required :error-messages="emailError" />
-                <v-text-field v-model="password" label="Password" @input="passwordError = ''" type="password" required :error-messages="passwordError"/>
+                <v-text-field v-model="password" label="Password" v-on:keyup.enter="submit" @input="passwordError = ''" type="password" required :error-messages="passwordError"/>
                 <v-btn @click="submit">Submit</v-btn>
             </v-form>
         </template>
@@ -19,9 +19,11 @@
 <script>
 import pageContainer from 'G/page-container.vue'
 import alert from 'G/alert.vue'
+import laravelValidationMixin from 'G/laravel-validation.js'
 
 export default {
     name: 'login',
+    mixins: [laravelValidationMixin],
     components: {
         pageContainer,
         alert
@@ -36,6 +38,12 @@ export default {
             password: "",
             emailError: "",
             passwordError: "",
+            specialRules: [
+                {
+                    action: 'wrongCredentials',
+                    rule: 'wrong_credentials',
+                },
+            ]
         }
     },
     methods: {
@@ -45,24 +53,21 @@ export default {
                 'password' : this.password 
             })
             .then((response) => {
-                if (response.status == 200) {
+                if (response.status == 204) {
                     this.alert = {
                         type: this.$getConst('Alert', 'SUCCESS'),
                         msg: "Vous etes auhtentifie"
                     }
                 }
             })
-            .catch((error) => {
-                if (error.response.status == 403) {
-                    this.alert = {
-                        type: this.$getConst('Alert', 'ERROR'),
-                        msg: "Mauvais mot de passe ou login"
-                    }
-                } else {
-                    throw new Error("Something bad happened");
-                }
-            });
+            .catch((errors) => this.laravelErros(errors));
         },
+        wrongCredentials: function() {
+            this.alert = {
+                type: this.$getConst('Alert', 'ERROR'),
+                msg: "Wrong credentials"
+            }
+        }
     },
 }
 </script>
