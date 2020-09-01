@@ -6,7 +6,7 @@
 //   By: bulliby <wellsguillaume+at+gmail.com>           /   ____/_  _  __    //
 //                                                      /    \  _\ \/ \/ /    //
 //   Created: 2019/03/10 19:10:46 by bulliby            \     \_\ \     /     //
-//   Updated: 2020/07/24 17:44:25 by bulliby             \________/\/\_/      //
+//   Updated: 2020/09/01 20:34:00 by bulliby             \________/\/\_/      //
 //                                                                            //
 // ************************************************************************** //
 
@@ -47,6 +47,10 @@ class ApiRequester {
 
     forgotPassword(params){
         return this.axios.post(`${this.baseUrl}/forgotpassword`, params);
+    }
+
+    verifyEmail(params) {
+        return this.axios.get(`${this.baseUrl}/verify`, params);
     }
 }
 

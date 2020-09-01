@@ -6,7 +6,7 @@
 //   By: bulliby <wellsguillaume+at+gmail.com>           /   ____/_  _  __    //
 //                                                      /    \  _\ \/ \/ /    //
 //   Created: 2020/07/24 16:35:41 by bulliby            \     \_\ \     /     //
-//   Updated: 2020/07/24 17:30:33 by bulliby             \________/\/\_/      //
+//   Updated: 2020/09/01 21:06:33 by bulliby             \________/\/\_/      //
 //                                                                            //
 // ************************************************************************** //
 
@@ -27,7 +27,18 @@ const Links = {
     PLAY: 3
 }
 
-const Consts = { Alert, Links };
+const HttpCode = {
+    UNAUTHORIZED: 401,
+    CSRF: 422,
+    OK: 200,    
+    NOCONTENT: 204,    
+}
+
+const General = {
+    UNEXPECTED_BEHAVIOUR: "Something bad happened please contact an adminstrator at contact+at+wellsguillaume.fr",
+}
+
+const Consts = { Alert, Links, HttpCode, General};
 
 ConstsLoader.install = function (Vue) {
     Vue.prototype.$getConst = (constObject, key) => {
