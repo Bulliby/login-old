@@ -6,7 +6,7 @@
 //   By: bulliby <wellsguillaume+at+gmail.com>           /   ____/_  _  __    //
 //                                                      /    \  _\ \/ \/ /    //
 //   Created: 2019/03/10 19:10:46 by bulliby            \     \_\ \     /     //
-//   Updated: 2020/09/01 20:34:00 by bulliby             \________/\/\_/      //
+//   Updated: 2020/09/12 15:59:55 by bulliby             \________/\/\_/      //
 //                                                                            //
 // ************************************************************************** //
 
@@ -22,6 +22,7 @@ class ApiRequester {
         this.axios = axios.create({
             baseURL: this.baseUrl
         });
+        this.axios.defaults.withCredentials = true;
         this.initCsrf();
     }
 

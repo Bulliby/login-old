@@ -10,7 +10,7 @@ import LibLoader from './only'
 Vue.use(Vuelidate)
 Vue.use(Consts)
 //TODO load url from ENV ?
-Vue.use(ApiRequester, {url: 'http://auth-belotte2'})
+Vue.use(ApiRequester, {url: 'http://auth.belotte.com'})
 Vue.use(LibLoader)
 
 const app = new Vue({
